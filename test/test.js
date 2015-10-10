@@ -3,7 +3,7 @@ var request = require("request");
 require("chai").should();
 
 describe("salaries-indeed interface", function() {
-	var salary = require("../index");
+	var salary = require("../index")();
 	describe("'and' interface", function() {
 		it("should have 1 job after calling 'and' before 'of'", function() {
 			salary.and("developer", 31419);
@@ -31,11 +31,8 @@ describe("salaries-indeed interface", function() {
 });
 
 describe("query generation", function() {
-	var salary = require("../index");
+	var salary = require("../index")();
 	var util = require("../utils");
-	before(function() {
-		salary.__jobs = null;
-	});
 	it("should provide a query string given a salary object", function() {
 		salary.of("developer", 31419);
 		util.query(salary)

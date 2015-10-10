@@ -1,4 +1,4 @@
-module.exports = (function() {
+module.exports = function() {
 	var self = {};
 	self.of = function(title, zip) {
 		if (!self.__jobs) { self.__jobs = []; }
@@ -15,4 +15,4 @@ module.exports = (function() {
 
 	};
 	return self;
-})();
+};
