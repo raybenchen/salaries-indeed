@@ -7,7 +7,7 @@ salary
 	.of("developer", 31419)
 	.and("programmer", 31419)
 	.and("it project manager", 31419)
-	.as("json", function(err, result) {
+	.then(function(err, result) {
 		// {
 		// 	"currency": "USD",
 		// 	"last_updated": 1444363200000,
