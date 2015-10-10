@@ -1,4 +1,3 @@
-var fs = require("fs");
 var cheerio = require("cheerio");
 var request = require("request");
 require("chai").should();
