@@ -12,7 +12,7 @@ module.exports = function() {
 		return self.of(title, zip);
 	};
 	self.then = function(cb) {
-
+		
 	};
 	return self;
 };

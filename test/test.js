@@ -2,7 +2,7 @@ var cheerio = require("cheerio");
 var request = require("request");
 require("chai").should();
 
-describe("salaries-indeed interface", function() {
+describe("interface", function() {
 	var salary = require("../index")();
 	describe("'and' interface", function() {
 		it("should have 1 job after calling 'and' before 'of'", function() {
@@ -48,14 +48,26 @@ describe("query generation", function() {
 describe("indeed HTML parsing", function() {
 	this.timeout(5000);
 
-	var PARAMS = "?q1=programmer&l1=31406&q2=developer&l2=31406&q3=it+product+manager&l3=31406";
-	var URL = "http://www.indeed.com/salary" + PARAMS;
-	var $ = "";
+	var util = require("../utils");
+
+	var params= "?q1=programmer&l1=31406&q2=developer&l2=31406&q3=it+product+manager&l3=31406";
+	var domain = "http://www.indeed.com/salary";
+	var body = null;
 	before(function(done) {
-		request(URL, function(err, response, body) {
-			if (err) return done(err);
-			$ = cheerio.load(body);
+		var promise = util.request(domain, params);
+		promise.then(function(result) {
+			body = result;
 			done();
+		}, function(err) {
+			done(err);
 		});
+	});
+
+	it("should have a 'salary_display_table'", function() {
+		util.table(body).should.be.a("string");
+	});
+
+	it("should have a currency of 'USD'", function() {
+		util.currency(util.table(body)).should.equal("USD");
 	});
 });
