@@ -3,7 +3,7 @@ var Q = require("q");
 var request = require("request");
 
 module.exports = {
-	query: function(salary) {
+	params: function(salary) {
 		var jobs = salary.__jobs,
 			parts = [];
 		for (var i = 0; i < jobs.length; i++) {
@@ -31,5 +31,10 @@ module.exports = {
 		$ = cheerio.load(html);
 		var text = $("tfoot > tr > th.col_a > span").text().split(" ");
 		return text.slice(1, 2)[0];
+	},
+	updated: function(html) {
+		$ = cheerio.load(html);
+		var text = $("tfoot > tr > th.col_a > span").text().split(" ");
+		return new Date(text.slice(4).join(" ")).getTime();
 	}
 };

@@ -10,7 +10,7 @@ salary
 	.then(function(err, result) {
 		// {
 		// 	"currency": "USD",
-		// 	"last_updated": 1444363200000,
+		// 	"updated_last": 1444363200000,
 		// 	"salaries": [
 		// 		{
 		// 			"what": "developer",

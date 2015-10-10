@@ -1,3 +1,6 @@
+var util = require("./utils");
+
+var DOMAIN = "http://www.indeed.com/salary";
 module.exports = function() {
 	var self = {};
 	self.of = function(title, zip) {
@@ -12,7 +15,16 @@ module.exports = function() {
 		return self.of(title, zip);
 	};
 	self.then = function(cb) {
-		
+		var promise = util.request(DOMAIN, util.params(self));
+		var salaries = {};
+		promise.then(function(result) {
+			salaries.currency = util.currency(result);
+			salaries.updated_last = util.updated(result);
+			
+			cb.apply(this, [null, salaries]);
+		}, function(err) {
+			cb.apply(this, [err, null]);
+		});
 	};
 	return self;
 };
