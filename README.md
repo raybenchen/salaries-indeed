@@ -2,7 +2,7 @@
 Salaries for job titles in zip codes scraped from indeed.com.
 
 ```js
-var salary = require("indeed-salaries");
+var salary = require("salaries-indeed");
 salary
 	.of("developer", 31419)
 	.and("programmer", 31419)
