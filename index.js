@@ -29,8 +29,7 @@ module.exports = function() {
 		promise.then(function(result) {
 			salaries.currency = util.currency(result);
 			salaries.updated_last = util.updated(result);
-			salaries.salaries = [];
-			
+			salaries.salaries = util.rows(result);
 			cb.apply(this, [null, salaries]);
 		}, function(err) {
 			cb.apply(this, [err, null]);

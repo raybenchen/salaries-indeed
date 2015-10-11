@@ -32,6 +32,8 @@ describe("interface", function() {
 
 	describe("then", function() {
 		this.timeout(5000);
+		var salary = require("../index")();
+		salary.of("developer", 31419).and("programmer", 31406);
 
 		var r = null;
 		before(function(done) {
@@ -52,6 +54,11 @@ describe("interface", function() {
 
 		it("should have a 'updated_last' property", function() {
 			r.should.have.property("updated_last");
+		});
+
+		it("should have a salaries prop with a length of 2", function() {
+			r.should.have.property("salaries");
+			r.salaries.should.be.length(2);
 		});
 	});
 });
