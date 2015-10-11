@@ -1,6 +1,6 @@
 {
   "name": "salaries-indeed",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Salaries for job titles in zip codes scraped from indeed.com",
   "main": "index.js",
   "scripts": {
