@@ -90,4 +90,8 @@ describe("utility functions", function() {
 	it("updated should be a number greater than 0", function() {
 		util.updated(util.table(body)).should.be.above(1444363200000);
 	});
+
+	it("should have rows equal to 2", function() {
+		util.rows(util.table(body)).should.be.length(2);
+	});
 });
